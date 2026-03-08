@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'restourant_app/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'restourant_app/css/profile.css' %}">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">Food gourmet</div>
+        <nav class="menu">
+            <a href="/">home</a>
+            <a href="/profile">profile</a>
+            <a href="/about_us/">about us</a>
+            <a href="/food/">food</a>
+        </nav>
+    </div>
+</header>
+
+<section class="profile-section">
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-avatar">
+                {# Проверяем, есть ли у пользователя аватар, если нет — ставим заглушку #}
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+                {% else %}
+                    <img src="https://i.pravatar.cc/120" alt="Default Avatar">
+                {% endif %}
+            </div>
+
+            <h2>{{ user.username }}</h2>
+
+            {# ВАЖНО: enctype="multipart/form-data" позволяет отправлять файлы (фото) #}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Сохранить изменения</button>
+            </form>
+            
+            {% if message %}
+                <p class="success-message">{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

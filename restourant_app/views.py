@@ -1,8 +1,10 @@
-from django.shortcuts import redirect,render
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
-from django.views.generic import FormView
-from .forms import LoginForm
+from django.views.generic import FormView, CreateView
+from .forms import LoginForm, UpdateProfileForm
+from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.forms import UserCreationForm
 
 class LoginView(FormView):
     template_name = 'login.html'
@@ -19,26 +21,28 @@ class LoginView(FormView):
         else:
             form.add_error(None, 'Невірний логін або пароль')
             return self.form_invalid(form)
-        
-
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
 
 class RegisterView(CreateView):
     template_name = 'register.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
 
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
-
 def HomeView(request):
     return render(request, "home.html")
 
+@login_required
 def Profile(request):
-    return render(request, "profile.html")
+    message = "" 
+    if request.method == "POST":
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            message = "Профиль успешно обновлён!"
+            form = UpdateProfileForm(instance=request.user)  
+    else:
+        form = UpdateProfileForm(instance=request.user)
+
+    return render(request, "profile.html", {"form": form, "message": message})
 
 def about_us(request):
     return render(request, "about_us.html")
