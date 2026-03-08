@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Profile Settings</title>
     <link rel="stylesheet" href="{% static 'restourant_app/css/header.css' %}">
     <link rel="stylesheet" href="{% static 'restourant_app/css/profile.css' %}">
 </head>
@@ -22,30 +22,51 @@
 </header>
 
 <section class="profile-section">
-    <div class="profile-container">
-        <div class="profile-card">
-            <div class="profile-avatar">
-                {# Проверяем, есть ли у пользователя аватар, если нет — ставим заглушку #}
-                {% if user.profile.avatar %}
-                    <img src="{{ user.profile.avatar.url }}" alt="Avatar">
-                {% else %}
-                    <img src="https://i.pravatar.cc/120" alt="Default Avatar">
-                {% endif %}
+    <div class="profile-card">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="avatar-section">
+                <label for="id_avatar">
+                    <div class="profile-avatar">
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+                        {% else %}
+                            <div class="empty-avatar-circle">
+                                {{ user.username|first|upper }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </label>
+                <input type="file" name="avatar" id="id_avatar" style="display:none">
+                <p class="change-photo-text">Change Photo</p>
             </div>
 
-            <h2>{{ user.username }}</h2>
+            <div class="profile-header">
+                <h2>Personal Profile</h2>
+                <span class="username-display">@{{ user.username|upper }}</span>
+            </div>
 
-            {# ВАЖНО: enctype="multipart/form-data" позволяет отправлять файлы (фото) #}
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Сохранить изменения</button>
-            </form>
+            <hr class="divider">
+
+            <div class="form-body">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" name="username" value="{{ user.username }}" class="custom-input">
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" value="{{ user.email }}" class="custom-input">
+                </div>
+            </div>
+
+            <button type="submit" class="save-btn">Save Settings</button>
             
             {% if message %}
-                <p class="success-message">{{ message }}</p>
+                <span class="success-message">Profile successfully updated!</span>
             {% endif %}
-        </div>
+        </form>
     </div>
 </section>
 

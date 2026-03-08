@@ -1,37 +1,128 @@
-.profile-section{
-    padding:60px 0;
-    background-color:#fff4e6;
+/* Фикс для центрирования самой секции */
+.profile-section {
+    width: 100vw !important;
+    min-height: 100vh;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #fff4e6;
+    margin: 0 !important;
+    padding: 100px 0 !important;
+    box-sizing: border-box;
 }
 
-.profile-container{
-    width:90%;
-    margin:0 auto;
-    display:flex;
-    justify-content:center;
+/* Фикс для карточки */
+.profile-card {
+    background: #fff8f0;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    width: 480px;
+    
+    /* Эти строки — ГЛАВНОЕ решение для центрирования */
+    margin: 0 auto !important; 
+    display: block !important;
 }
 
-.profile-card{
-    background:#fff8f0;
-    padding:40px;
-    border-radius:10px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.1);
-    text-align:center;
-    width:350px;
+.avatar-section {
+    margin-bottom: 50px;
 }
 
-.profile-avatar img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    margin-bottom:20px;
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.profile-card h2{
-    color:#ff6f61;
-    margin-bottom:10px;
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.profile-info{
-    margin-bottom:10px;
-    color:#555;
+.change-photo-text {
+    color: #555;
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.profile-header h2 {
+    color: #ff6f61;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Красный @CAP */
+.username-display {
+    color: #ff6f61 !important;
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 45px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #f0d8c0;
+    margin-bottom: 50px;
+}
+
+/* Вертикальные отступы между полями */
+.form-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 55px !important;
+}
+
+.input-group label {
+    display: block;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.custom-input {
+    width: 90%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.save-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #999;
+    padding: 12px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.success-message {
+    color: #2ecc71;
+    font-size: 18px;
+    margin-top: 25px;
+    display: block;
+    font-weight: bold;
 }
