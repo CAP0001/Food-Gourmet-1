@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="menu-item">
+    <div class="pasta-img-container">
+        <img src="{% static 'restourant_app/imgs/carbonara.jpg' %}" 
+             alt="Паста Карбонара" 
+             class="pasta-img">
+    </div>
+
+    <div class="menu-content">
+        <div class="stars">★★★★☆</div>
+        <h2>Паста Карбонара</h2>
+        <p>Классическая итальянская паста с беконом, сливочным соусом и сыром пармезан.</p>
+    </div>
+</div>
+{% endblock %}

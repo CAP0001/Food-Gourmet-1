@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>{{ dish.name }}</h1>
+<img src="{{ dish.image.url }}" width="400" style="border-radius:12px;">
+<p>{{ dish.description }}</p>
+
+<h2>Рейтинг ⭐ {{ avg_rating|floatformat:1 }}</h2>
+
+<h3>Отзывы:</h3>
+{% for review in reviews %}
+<div style="border:1px solid #eee; padding:10px; margin:10px 0; border-radius:8px;">
+⭐ {{ review.stars }} - {{ review.user.username }}
+<p>{{ review.text }}</p>
+</div>
+{% empty %}
+<p>Пока нет отзывов</p>
+{% endfor %}
+
+<h3>Оставить отзыв:</h3>
+<form method="post">
+    {% csrf_token %}
+    <div id="star-rating">
+        <span class="star" data-value="1">☆</span>
+        <span class="star" data-value="2">☆</span>
+        <span class="star" data-value="3">☆</span>
+        <span class="star" data-value="4">☆</span>
+        <span class="star" data-value="5">☆</span>
+    </div>
+    <input type="hidden" name="stars" id="stars-input" value="0">
+    <textarea name="text" placeholder="Ваш отзыв" style="width:100%;height:80px;"></textarea>
+    <br><br>
+    <button type="submit">Отправить</button>
+</form>
+
+<script>
+const stars = document.querySelectorAll('#star-rating .star');
+const starsInput = document.getElementById('stars-input');
+
+stars.forEach(star => {
+    star.addEventListener('mouseover', () => highlightStars(star.dataset.value));
+    star.addEventListener('mouseout', () => highlightStars(starsInput.value));
+    star.addEventListener('click', () => { starsInput.value = star.dataset.value; highlightStars(starsInput.value); });
+});
+
+function highlightStars(rating){
+    stars.forEach(star => {
+        star.classList.toggle('selected', star.dataset.value <= rating);
+    });
+}
+</script>
+
+<style>
+#star-rating .star { font-size:30px; cursor:pointer; color:#ccc; }
+#star-rating .star.selected { color:#f1c40f; }
+</style>
+
+{% endblock %}

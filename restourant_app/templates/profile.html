@@ -1,25 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile Settings</title>
-    <link rel="stylesheet" href="{% static 'restourant_app/css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'restourant_app/css/profile.css' %}">
-</head>
+{% extends 'base.html' %}
+{% block content %}
+
 <body>
 
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo">Food gourmet</div>
-        <nav class="menu">
-            <a href="/">home</a>
-            <a href="/profile">profile</a>
-            <a href="/about_us/">about us</a>
-            <a href="/food/">food</a>
-        </nav>
-    </div>
-</header>
 
 <section class="profile-section">
     <div class="profile-card">
@@ -71,4 +54,4 @@
 </section>
 
 </body>
-</html>
+{% endblock %}

@@ -37,7 +37,7 @@ def Profile(request):
         form = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            message = "Профиль успешно обновлён!"
+            message = "Profile succesfuly saved!"
             form = UpdateProfileForm(instance=request.user)  
     else:
         form = UpdateProfileForm(instance=request.user)
@@ -49,3 +49,9 @@ def about_us(request):
 
 def food(request):
     return render(request, "food.html")
+
+
+    
+
+# cap
+#45354565434gdgfgrhfgef_!#$@#

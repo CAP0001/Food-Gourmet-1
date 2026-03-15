@@ -1,36 +1,17 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'restourant_app/css/geeks.css' %}">
-</head>
-<body>
-
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo">Food gourmet</div>
-
-        <nav class="menu">
-            <a href="{% url 'profile' %}">profile</a>
-            <a href="{% url 'about_us' %}">about us</a>
-            <a href="{% url 'food' %}">food</a>
-        </nav>
-    </div>
-</header>
-
+{% block content %}
 <section class="main">
     <div class="container main-inner">
 
         <div class="main-text">
             <h1>Welcome!</h1>
-            <p>Вітаю на сайті для бронювання їжі, ми підберемо кращю страву! Ми займаемося бронюванням в сьому світі!
-                (більше деталей далі на сайті)
+            <p>Вітаю на сайті для бронювання їжі, ми підберемо кращу страву! 
+               Ми займаємося бронюванням в всьому світі!
+               (більше деталей далі на сайті)
             </p>
-            <a href="#" class="btn">Start</a>
+            <a href="/food/" class="btn">Start</a>
         </div>
 
         <div class="main-img">
@@ -41,6 +22,4 @@
 
     </div>
 </section>
-
-</body>
-</html>
+{% endblock %}
