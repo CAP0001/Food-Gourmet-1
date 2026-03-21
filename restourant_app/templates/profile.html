@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-
-<body>
-
-
 <section class="profile-section">
     <div class="profile-card">
         <form method="POST" enctype="multipart/form-data">
@@ -22,12 +20,28 @@
                     </div>
                 </label>
                 <input type="file" name="avatar" id="id_avatar" style="display:none">
-                <p class="change-photo-text">Change Photo</p>
+                <p class="change-photo-text">Click to change photo</p>
             </div>
 
             <div class="profile-header">
-                <h2>Personal Profile</h2>
-                <span class="username-display">@{{ user.username|upper }}</span>
+                <h2>User Settings</h2>
+                <div class="user-identity">
+                    <span class="username-display">@{{ user.username|upper }}</span>
+                    
+                    <div class="status-container" style="margin-top: 5px;">
+                        {% with status=user.profile.get_status %}
+                            {% if status %}
+                                <span class="status-badge {{ status.class }}" style="font-weight: bold;">
+                                    [{{ status.name }}]
+                                </span>
+                            {% else %}
+                                <span class="status-default" style="color: #888; font-weight: 500;">
+                                    Member
+                                </span>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
             </div>
 
             <hr class="divider">
@@ -42,16 +56,18 @@
                     <label>Email Address</label>
                     <input type="email" name="email" value="{{ user.email }}" class="custom-input">
                 </div>
+                
+                <div class="stats-info" style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    Total orders: <strong>{{ user.profile.orders_count }}</strong>
+                </div>
             </div>
 
-            <button type="submit" class="save-btn">Save Settings</button>
+            <button type="submit" class="save-btn">Save Changes</button>
             
             {% if message %}
-                <span class="success-message">Profile successfully updated!</span>
+                <p class="success-message" style="color: #27ae60; margin-top: 10px;">Profile successfully updated!</p>
             {% endif %}
         </form>
     </div>
 </section>
-
-</body>
 {% endblock %}

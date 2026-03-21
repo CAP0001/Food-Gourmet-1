@@ -28,7 +28,8 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('about_us/', views.about_us, name='about_us'),
     path('profile/', views.Profile, name='profile'),
-    path('food/', views.food, name='food')
+    path('food/', views.food, name='food'),
+    path('carbonara/', views.carbonara, name='carbonara')
 ]
 
 if settings.DEBUG:
