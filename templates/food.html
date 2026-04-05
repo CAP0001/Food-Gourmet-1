@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<a href="/carbonara/" class="menu-item-link">
+<a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
     <div class="menu-item">
         <div class="pasta-img-container">
             <img src="{% static 'restourant_app/imgs/carbonara.jpg' %}" 
@@ -12,8 +12,9 @@
         
         <div class="menu-content">
             <div class="stars">★★★★☆</div>
-            <h2>Паста Карбонара</h2>
-            <p>Классическая итальянская паста с беконом, сливочным соусом и сыром пармезан.</p>
+            <h2>{{food.name}}</h2>
+            <p>{{food.description}}</p>
+            <p> {{food.price}} </p>
         </div>
     </div>
 </a>

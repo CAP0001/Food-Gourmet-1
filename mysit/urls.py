@@ -16,20 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from restourant_app import views 
-from django.contrib.auth.views import LoginView  
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('restourant_app.urls')),
-    path('accounts/login/', LoginView.as_view(template_name='login.html'), name='login'),
-    path('register/', views.RegisterView.as_view(), name='register'),
-    path('about_us/', views.about_us, name='about_us'),
-    path('profile/', views.Profile, name='profile'),
-    path('food/', views.food, name='food'),
-    path('carbonara/', views.carbonara, name='carbonara')
+    path('', include('restaurant_app.urls')), 
 ]
 
 if settings.DEBUG:

@@ -11,16 +11,18 @@
     <link rel="stylesheet" href="{% static 'restourant_app/css/food.css' %}">
     <link rel="stylesheet" href="{% static 'restourant_app/css/food_template.css' %}">
     <link rel="stylesheet" href="{% static 'restourant_app/css/carbonara.css' %}">
+    <link rel="stylesheet" href="{% static 'restourant_app/css/basket.css' %}">
 </head>
 
 <header class="header">
     <div class="container header-inner">
         <div class="logo">Food gourmet</div>
         <nav class="menu">
-            <a href="/">home</a>
-            <a href="/profile">profile</a>
-            <a href="/about_us/">about us</a>
-            <a href="/food/">food</a>
+            <a href="{% url 'basket' %}">🛒</a>
+            <a href="{% url 'home' %}">home</a>
+            <a href="{% url 'profile' %}">profile</a>
+            <a href="{% url 'about_us' %}">about us</a>
+            <a href="{% url 'food-list' %}">foods</a>
         </nav>
     </div>
 </header>

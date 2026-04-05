@@ -18,7 +18,7 @@ class UserProfile(models.Model):
             return {'name': 'Silver member', 'class': 'silver'}
         elif self.orders_count >= 5:
             return {'name': 'Bronze member', 'class': 'bronze'}
-        return None # Добавил возврат None для обычных юзеров
+        return None 
 
     def __str__(self):
         return f'User profile {self.user.username}'
@@ -26,7 +26,7 @@ class UserProfile(models.Model):
 class Food(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    # Изменил на FloatField, чтобы средний рейтинг мог быть 4.5
+    image = models.ImageField(upload_to='foods/', null=True, blank=True) # Добавил поле для фото
     stars = models.FloatField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         default=5.0
@@ -40,7 +40,6 @@ class Feedback(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='feedbacks')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-
     stars = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         default=5
@@ -49,3 +48,14 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"Review by {self.user.username} on {self.food.name}"
+
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='basket_items')
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def total_price(self):
+        return self.food.price * self.quantity
+
+    def __str__(self):
+        return f"{self.food.name} x {self.quantity} for {self.user.username}"

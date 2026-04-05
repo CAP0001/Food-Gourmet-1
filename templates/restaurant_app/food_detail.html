@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="food-container">
+    <div class="food-left">
+        {% if food.image %}
+            <img src="{{ food.image.url }}" class="food-main-img" alt="{{ food.name }}">
+        {% else %}
+            <img src="{% static 'restourant_app/imgs/carbonara.jpg' %}" class="food-main-img">
+        {% endif %}
+        
+        <div class="stars-large">
+            <span class="gold-stars">
+                {% if food.stars >= 4.5 %}★★★★★{% elif food.stars >= 3.5 %}★★★★☆{% elif food.stars >= 2.5 %}★★★☆☆{% else %}★★☆☆☆{% endif %}
+            </span>
+            <span style="color: #888; font-weight: bold;">({{ food.stars|stringformat:".1f" }})</span>
+        </div>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="make_order">
+            <button type="submit" class="btn-order-main">
+                Order Now — {{ food.price }} USD
+            </button>
+        </form>
+    </div>
+
+    <div class="food-right">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">{{ food.name }}</h1>
+        <p style="font-size: 1.2rem; color: #666; line-height: 1.6;">{{ food.description }}</p>
+        
+        <hr style="margin: 40px 0; opacity: 0.1;">
+
+        <div class="feedback-section">
+            <h3 style="margin-bottom: 25px;">Customer Reviews</h3>
+            
+            <div class="reviews-wrapper" style="margin-bottom: 30px;">
+                {% for fb in feedbacks %}
+                <div class="feedback-item">
+                    <div class="avatar-box">
+                        {% if fb.user.profile.avatar %}
+                            <img src="{{ fb.user.profile.avatar.url }}">
+                        {% else %}
+                            <div class="avatar-placeholder">{{ fb.user.username|first|upper }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="font-size: 1.1rem;">{{ fb.user.username }}</strong>
+                                {% if fb.user.profile.get_status %}
+                                    <span class="status-text {{ fb.user.profile.get_status.class }}">
+                                        ({{ fb.user.profile.get_status.name }})
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <span style="color: #bbb; font-size: 0.8rem;">{{ fb.created_at|date:"d.m.Y" }}</span>
+                        </div>
+                        
+                        <div class="gold-stars" style="font-size: 0.9rem; margin: 5px 0;">
+                            {% if fb.stars == 5 %}★★★★★{% elif fb.stars == 4 %}★★★★{% elif fb.stars == 3 %}★★★{% elif fb.stars == 2 %}★★{% else %}★{% endif %}
+                        </div>
+                        
+                        <p style="margin: 8px 0 0; color: #444;">{{ fb.text }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                    <p style="color: #999;">No reviews yet. Be the first to rate!</p>
+                {% endfor %}
+            </div>
+
+            <form method="post" class="feedback-form" action="">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_feedback">
+                <p style="margin: 0 0 10px; font-weight: bold;">Your Rating:</p>
+                
+                <div class="rating-area">
+                    <input type="radio" id="star-5" name="stars" value="5" required><label for="star-5"></label>
+                    <input type="radio" id="star-4" name="stars" value="4"><label for="star-4"></label>
+                    <input type="radio" id="star-3" name="stars" value="3"><label for="star-3"></label>
+                    <input type="radio" id="star-2" name="stars" value="2"><label for="star-2"></label>
+                    <input type="radio" id="star-1" name="stars" value="1"><label for="star-1"></label>
+                </div>
+                
+                <textarea name="feedback" placeholder="How was the food? Share your experience..." required></textarea>
+                
+                <button type="submit" class="btn-submit">
+                    Post Review
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .food-container { display: flex; gap: 50px; padding: 40px; max-width: 1200px; margin: 0 auto; }
+    .food-left { flex: 0 0 350px; text-align: center; }
+    .food-main-img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .gold-stars { color: #ffca08; }
+    
+    .status-text {
+        font-size: 0.85rem;
+        margin-left: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .bronze { color: #cd7f32; }
+    .silver { color: #919191; }
+    .gold   { color: #d4af37; }
+    .lapiz  { color: #26619c; }
+    .diamond { color: #00ced1; text-shadow: 0 0 5px rgba(0,206,209,0.2); }
+
+    .rating-area { display: flex; flex-direction: row-reverse; justify-content: flex-end; margin-bottom: 10px; }
+    .rating-area input { display: none; }
+    .rating-area label { color: #ccc; font-size: 40px; padding: 0 3px; cursor: pointer; transition: .2s; }
+    .rating-area label:before { content: '★'; }
+    .rating-area input:checked ~ label, .rating-area label:hover, .rating-area label:hover ~ label { color: #ffca08; }
+
+    .feedback-item { display: flex; gap: 15px; background: #fff; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-left: 5px solid #ff6f61; text-align: left; }
+    .avatar-box img, .avatar-placeholder { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+    .avatar-placeholder { background: #eee; line-height: 50px; text-align: center; font-weight: bold; }
+    
+    .feedback-form textarea { width: 100%; height: 100px; border-radius: 10px; border: 1px solid #ddd; padding: 10px; margin: 15px 0; font-family: inherit; }
+    .btn-submit { background: #ff6f61; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .btn-order-main { width: 100%; background: #ff6f61; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+</style>
+{% endblock %}

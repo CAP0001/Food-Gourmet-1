@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="menu-grid">
+    {% for food in foods %}
+    <a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
+        <div class="menu-item">
+            <div class="pasta-img-container">
+                {% if food.image %}
+                    <img src="{{ food.image.url }}" class="pasta-img">
+                {% else %}
+                    <img src="{% static 'restourant_app/imgs/carbonara.jpg' %}" class="pasta-img">
+                {% endif %}
+            </div>
+            
+            <div class="menu-content">
+                <div class="stars">
+                    {% if food.stars >= 4.5 %}★★★★★{% elif food.stars >= 3.5 %}★★★★☆{% else %}★★★☆☆{% endif %}
+                </div>
+                <h2>{{ food.name }}</h2>
+                <p>{{ food.description|truncatewords:20 }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -68,6 +68,31 @@
                 <p class="success-message" style="color: #27ae60; margin-top: 10px;">Profile successfully updated!</p>
             {% endif %}
         </form>
+
+        <hr class="divider" style="margin-top: 20px;">
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Log Out from Account</button>
+        </form>
     </div>
 </section>
+
+<style>
+    .logout-btn {
+        width: 100%;
+        background: transparent;
+        color: #e74c3c;
+        border: 2px solid #e74c3c;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+    .logout-btn:hover {
+        background: #e74c3c;
+        color: white;
+    }
+</style>
 {% endblock %}
