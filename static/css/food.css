@@ -1,0 +1,206 @@
+.menu-item-link, 
+.menu-item-link:hover, 
+.menu-item-link:visited, 
+.menu-item-link:active {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block;
+}
+
+.menu-item-link h2, 
+.menu-item-link p,
+.menu-item-link .stars {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin: 20px auto 0 auto;
+    max-width: 1000px;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-item:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+}
+
+.pasta-img-container {
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.pasta-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.menu-content {
+    flex: 1;
+}
+
+.menu-content h2 {
+    color: #ff6f61 !important;
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    text-decoration: none !important;
+}
+
+.menu-content p {
+    font-size: 1rem;
+    color: #555 !important;
+    margin: 0;
+    text-decoration: none !important;
+}
+
+.stars {
+    color: #f1c40f !important;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+#id_avatar {
+    display: none;
+}
+/* 1. ОБЩИЙ КОНТЕЙНЕР */
+.menu-grid {
+    display: block; /* Обычный блочный вид, чтобы не сжимать содержимое */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 2. ВЫПАДАЮЩЕЕ МЕНЮ (ФИЛЬТРЫ) */
+.filter-dropdown {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 800px; /* Ширина совпадает с карточками еды */
+    margin: 0 auto 30px auto; /* Центрируем и даем отступ снизу */
+}
+
+.dropbtn {
+    width: 100%;
+    background-color: white;
+    color: #ff6b6b;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #ff6b6b;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+}
+
+.dropbtn:hover {
+    background-color: #fff1f1;
+}
+
+/* Список категорий */
+.dropdown-content {
+    display: none; /* Скрыто по умолчанию, показывается через JS классом .show */
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 100;
+    border-radius: 12px;
+    margin-top: 5px;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+/* Класс, который добавляет JavaScript при клике */
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #fff1f1;
+    color: #ff6b6b;
+}
+
+/* 3. КАРТОЧКИ ЕДЫ */
+.menu-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    max-width: 800px; /* Фиксированная ширина карточки */
+    margin: 0 auto 20px auto; /* Центрируем каждую карточку и задаем дистанцию */
+}
+
+.menu-item {
+    display: flex; /* Картинка слева, текст справа */
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item-link:hover .menu-item {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Контейнер картинки */
+.pasta-img-container {
+    flex-shrink: 0;
+    width: 180px;
+    height: 120px;
+    margin-right: 25px;
+}
+
+.pasta-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы фото не растягивалось, а аккуратно заполняло блок */
+    border-radius: 10px;
+}
+
+/* Текстовый блок */
+.menu-content {
+    flex-grow: 1;
+}
+
+.menu-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    color: #ff6b6b;
+}
+
+.menu-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+.stars {
+    color: #ffb400;
+    font-size: 14px;
+    margin-bottom: 5px;
+}

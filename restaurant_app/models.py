@@ -26,12 +26,13 @@ class UserProfile(models.Model):
 class Food(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='foods/', null=True, blank=True) # Добавил поле для фото
+    image = models.ImageField(upload_to='foods/', null=True, blank=True)
     stars = models.FloatField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         default=5.0
     )
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    food_type = models.CharField(max_length=200, default='Other')
 
     def __str__(self):
         return self.name

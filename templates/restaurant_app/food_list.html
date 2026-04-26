@@ -3,15 +3,44 @@
 
 {% block content %}
 <div class="menu-grid">
+    <div class="filter-dropdown">
+        <button class="dropbtn" id="filterBtn">Filters ▼</button>
+        
+        <div class="dropdown-content" id="filterContent">
+            <a href="?type=all">All</a>
+            <a href="?type=pizza">Pizza</a>
+            <a href="?type=pasta">Pasta</a>
+            <a href="?type=salad">Salad</a>
+            <a href="?type=dessert">Dessert</a>
+        </div>
+    </div>
+    <script>
+        const btn = document.getElementById('filterBtn');
+        const content = document.getElementById('filterContent');
+    
+        btn.addEventListener('click', (e) => {
+            content.classList.toggle('show');
+            e.stopPropagation();
+        });
+    
+        window.addEventListener('click', () => {
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            }
+        });
+    </script>
+    <div class="menu-grid">
     {% for food in foods %}
     <a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
         <div class="menu-item">
+            
             <div class="pasta-img-container">
                 {% if food.image %}
                     <img src="{{ food.image.url }}" class="pasta-img">
                 {% else %}
-                    <img src="{% static 'restourant_app/imgs/carbonara.jpg' %}" class="pasta-img">
+                    <img src="{% static 'imgs/carbonara.jpg' %}" class="pasta-img">
                 {% endif %}
+
             </div>
             
             <div class="menu-content">
@@ -22,7 +51,7 @@
                 <p>{{ food.description|truncatewords:20 }}</p>
             </div>
         </div>
-    </a>
+    </a> 
     {% endfor %}
 </div>
 

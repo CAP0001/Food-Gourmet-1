@@ -10,7 +10,6 @@ from django.db import transaction
 from .forms import LoginForm, UpdateProfileForm
 from .models import Food, Feedback, Basket, UserProfile
 
-
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
@@ -36,7 +35,6 @@ def logout_view(request):
     logout(request)
     return redirect('home') 
 
-
 def HomeView(request):
     return render(request, "home.html")
 
@@ -59,11 +57,17 @@ def Profile(request):
 def about_us(request):
     return render(request, "about_us.html")
 
-
 class FoodListView(ListView):
     model = Food
     context_object_name = "foods"
     template_name = "food_list.html" 
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        food_type = self.request.GET.get('type')
+        if food_type and food_type != 'all':
+            queryset = queryset.filter(food_type__iexact=food_type)
+        return queryset
 
 class FoodDetailView(DetailView):
     model = Food
@@ -86,10 +90,7 @@ class FoodDetailView(DetailView):
         action = request.POST.get('action')
 
         if action == 'make_order':
-            cart_item, created = Basket.objects.get_or_create(
-                user=request.user,
-                food=self.object
-            )
+            cart_item, created = Basket.objects.get_or_create(user=request.user, food=self.object)
             if not created:
                 cart_item.quantity += 1
             cart_item.save()
@@ -98,7 +99,6 @@ class FoodDetailView(DetailView):
         elif action == 'add_feedback':
             text = request.POST.get('feedback')
             stars = request.POST.get('stars')
-            
             if text and stars:
                 Feedback.objects.create(
                     food=self.object,
@@ -109,62 +109,29 @@ class FoodDetailView(DetailView):
                 avg_rating = self.object.feedbacks.aggregate(Avg('stars'))['stars__avg']
                 self.object.stars = avg_rating
                 self.object.save()
-            
             return redirect('food-detail', pk=self.object.pk)
 
         return redirect('food-detail', pk=self.object.pk)
 
-
 @login_required
 def basket(request):
     user_items = Basket.objects.filter(user=request.user)
-    total_sum = sum(item.food.price * item.quantity for item in user_items)
-    
-    context = {
-        "items": user_items,
-        "total_sum": total_sum
-    }
-    return render(request, "restaurant_app/basket.html", context)
+    total_sum = sum(item.total_price() for item in user_items)
+    return render(request, "restaurant_app/basket.html", {"items": user_items, "total_sum": total_sum})
 
 @login_required
 def checkout(request):
     if request.method == "POST":
         with transaction.atomic():
             user_basket = Basket.objects.filter(user=request.user)
-            
             if user_basket.exists():
                 total_quantity = sum(item.quantity for item in user_basket)
-                
                 profile, _ = UserProfile.objects.get_or_create(user=request.user)
                 profile.orders_count += total_quantity
                 profile.save()
-
                 user_basket.delete()
-
-                return redirect('basket') 
-            
     return redirect('basket')
 
-def carbonara(request):
-    item = get_object_or_404(Food, name="Pasta Carbonara")
-    feedbacks = item.feedbacks.all().order_by('-created_at')
-
-    if request.method == "POST" and request.user.is_authenticated:
-        text = request.POST.get('feedback')
-        stars = request.POST.get('stars') 
-        
-        if text and stars:
-            Feedback.objects.create(
-                food=item, 
-                user=request.user, 
-                text=text,
-                stars=int(stars)
-            )
-            item.stars = item.feedbacks.aggregate(Avg('stars'))['stars__avg']
-            item.save()
-            return redirect('carbonara')
-
-    return render(request, "carbonara.html", {"item": item, "feedbacks": feedbacks})
 # cap
 #45354565434gdgfgrhfgef_!#$@#
 #===================================
