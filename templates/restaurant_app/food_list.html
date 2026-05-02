@@ -7,52 +7,56 @@
         <button class="dropbtn" id="filterBtn">Filters ▼</button>
         
         <div class="dropdown-content" id="filterContent">
-            <a href="?type=all">All</a>
-            <a href="?type=pizza">Pizza</a>
-            <a href="?type=pasta">Pasta</a>
-            <a href="?type=salad">Salad</a>
-            <a href="?type=dessert">Dessert</a>
+            <a href="?type=all" class="filter-main-link">All Dishes</a>
+
+            <details class="sub-filter">
+                <summary>Italian ▼</summary>
+                <div class="sub-content">
+                    <a href="?type=pizza">Pizza</a>
+                    <a href="?type=pasta">Pasta</a>
+                </div>
+            </details>
+
+            <details class="sub-filter">
+                <summary>Japan ▼</summary>
+                <div class="sub-content">
+                    <a href="?type=sushi">Sushi</a>
+                    <a href="?type=ramen">Ramen</a>
+                </div>
+            </details>
+
+            <details class="sub-filter">
+                <summary>Ukrainian ▼</summary>
+                <div class="sub-content">
+                    <a href="?type=soup">Soups</a>
+                    <a href="?type=main">Main Dishes</a>
+                </div>
+            </details>
         </div>
     </div>
-    <script>
-        const btn = document.getElementById('filterBtn');
-        const content = document.getElementById('filterContent');
-    
-        btn.addEventListener('click', (e) => {
-            content.classList.toggle('show');
-            e.stopPropagation();
-        });
-    
-        window.addEventListener('click', () => {
-            if (content.classList.contains('show')) {
-                content.classList.remove('show');
-            }
-        });
-    </script>
-    <div class="menu-grid">
-    {% for food in foods %}
-    <a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
-        <div class="menu-item">
-            
-            <div class="pasta-img-container">
-                {% if food.image %}
-                    <img src="{{ food.image.url }}" class="pasta-img">
-                {% else %}
-                    <img src="{% static 'imgs/carbonara.jpg' %}" class="pasta-img">
-                {% endif %}
 
-            </div>
-            
-            <div class="menu-content">
-                <div class="stars">
-                    {% if food.stars >= 4.5 %}★★★★★{% elif food.stars >= 3.5 %}★★★★☆{% else %}★★★☆☆{% endif %}
+    <div class="food-items-container">
+        {% for food in foods %}
+        <a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
+            <div class="menu-item">
+                <div class="pasta-img-container">
+                    {% if food.image %}
+                        <img src="{{ food.image.url }}" class="pasta-img">
+                    {% else %}
+                        <img src="{% static 'imgs/carbonara.jpg' %}" class="pasta-img">
+                    {% endif %}
                 </div>
-                <h2>{{ food.name }}</h2>
-                <p>{{ food.description|truncatewords:20 }}</p>
+                
+                <div class="menu-content">
+                    <div class="stars">
+                        {% if food.stars >= 4.5 %}★★★★★{% elif food.stars >= 3.5 %}★★★★☆{% else %}★★★☆☆{% endif %}
+                    </div>
+                    <h2>{{ food.name }}</h2>
+                    <p>{{ food.description|truncatewords:20 }}</p>
+                </div>
             </div>
-        </div>
-    </a> 
-    {% endfor %}
+        </a> 
+        {% endfor %}
+    </div>
 </div>
-
 {% endblock %}

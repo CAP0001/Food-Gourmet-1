@@ -1,4 +1,4 @@
-/* Фикс для центрирования самой секции */
+
 .profile-section {
     width: 100vw !important;
     min-height: 100vh;
@@ -11,7 +11,6 @@
     box-sizing: border-box;
 }
 
-/* Фикс для карточки */
 .profile-card {
     background: #fff8f0;
     padding: 60px;
@@ -20,7 +19,6 @@
     text-align: center;
     width: 480px;
     
-    /* Эти строки — ГЛАВНОЕ решение для центрирования */
     margin: 0 auto !important; 
     display: block !important;
 }
@@ -58,7 +56,6 @@
     margin-bottom: 20px;
 }
 
-/* Красный @CAP */
 .username-display {
     color: #ff6f61 !important;
     font-size: 22px;
@@ -74,7 +71,6 @@
     margin-bottom: 50px;
 }
 
-/* Вертикальные отступы между полями */
 .form-body {
     display: flex;
     flex-direction: column;
@@ -137,4 +133,21 @@
     font-weight: bold; 
     text-transform: uppercase;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.logout-btn {
+    width: 100%;
+    background: transparent;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+.logout-btn:hover {
+    background: #e74c3c;
+    color: white;
 }

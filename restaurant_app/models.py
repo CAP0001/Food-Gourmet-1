@@ -33,9 +33,12 @@ class Food(models.Model):
     )
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     food_type = models.CharField(max_length=200, default='Other')
+    country = models.CharField(max_length=200, default='innational')
 
     def __str__(self):
         return self.name
+
+
 
 class Feedback(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='feedbacks')
