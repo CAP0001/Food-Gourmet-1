@@ -10,6 +10,7 @@ urlpatterns = [
     path('foods/', views.FoodListView.as_view(), name='food-list'),
     path('basket/', views.basket, name='basket'),
     path('<int:pk>/', views.FoodDetailView.as_view(), name='food-detail'),
-    path('checkout/', views.checkout, name='checkout'),\
+    path('checkout/', views.checkout, name='checkout'),
     path('logout/', views.logout_view, name='logout'),
+    path('basket/remove/<int:pk>/', views.remove_from_basket, name='remove-from-basket'),
 ]

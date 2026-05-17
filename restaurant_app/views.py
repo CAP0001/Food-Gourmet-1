@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Avg
 from django.db import transaction
+from django.core.paginator import Paginator
 
 from .forms import LoginForm, UpdateProfileForm
 from .models import Food, Feedback, Basket, UserProfile
@@ -61,12 +62,15 @@ class FoodListView(ListView):
     model = Food
     context_object_name = "foods"
     template_name = "food_list.html" 
+    paginate_by = 5 
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().order_by('id')
+        
         food_type = self.request.GET.get('type')
         if food_type and food_type != 'all':
             queryset = queryset.filter(food_type__iexact=food_type)
+            
         return queryset
 
 class FoodDetailView(DetailView):
@@ -118,6 +122,12 @@ def basket(request):
     user_items = Basket.objects.filter(user=request.user)
     total_sum = sum(item.total_price() for item in user_items)
     return render(request, "restaurant_app/basket.html", {"items": user_items, "total_sum": total_sum})
+    
+@login_required
+def remove_from_basket(request, pk):
+    item = get_object_or_404(Basket, pk=pk, user=request.user)
+    item.delete() 
+    return redirect('basket') 
 
 @login_required
 def checkout(request):

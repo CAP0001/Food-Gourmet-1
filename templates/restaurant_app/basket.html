@@ -24,10 +24,13 @@
                         <p>Quantity: <strong>{{ item.quantity }}</strong></p>
                     </div>
 
-                    <div class="item-subtotal">
+                    <div class="item-subtotal" style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 15px;">
                         <span style="font-size: 1.2rem; font-weight: bold; color: #ff6f61;">
                             {{ item.total_price }} USD
                         </span>
+                        <a href="{% url 'remove-from-basket' item.pk %}" class="delete-btn">
+                            Delete
+                        </a>
                     </div>
                 </div>
                 {% endfor %}
@@ -71,26 +74,4 @@
     </div>
 </div>
 
-<script>
-    const modal = document.getElementById('confirm-modal');
-    const form = document.getElementById('checkout-form');
-
-    function showConfirmModal() {
-        modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    function submitCheckout() {
-        form.submit();
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-</script>
 {% endblock %}
