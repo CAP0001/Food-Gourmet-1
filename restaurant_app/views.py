@@ -7,9 +7,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Avg
 from django.db import transaction
 from django.core.paginator import Paginator
-
+from django.utils.translation import gettext as _
 from .forms import LoginForm, UpdateProfileForm
 from .models import Food, Feedback, Basket, UserProfile
+
 
 class LoginView(FormView):
     template_name = 'login.html'

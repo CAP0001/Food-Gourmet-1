@@ -1,37 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="menu-grid">
     <div class="filter-dropdown">
-        <button class="dropbtn" id="filterBtn">Filters ▼</button>
+        <button class="dropbtn" id="filterBtn">{% translate "Filters ▼" %}</button>
         
         <div class="dropdown-content" id="filterContent">
-            <a href="?type=all" class="filter-main-link">All Dishes</a>
+            <a href="?type=all" class="filter-main-link">{% translate "All Dishes" %}</a>
 
             <details class="sub-filter">
-                <summary>Italian ▼</summary>
+                <summary>{% translate "Italian ▼" %}</summary>
                 <div class="sub-content">
-                    <a href="?type=pizza">Pizza</a>
-                    <a href="?type=pasta">Pasta</a>
-                    <a href="?type=desserts">desserts</a>
-                    <a href="?type=salads">salad</a>
+                    <a href="?type=pizza">{% translate "Pizza" %}</a>
+                    <a href="?type=pasta">{% translate "Pasta" %}</a>
+                    <a href="?type=desserts">{% translate "desserts" %}</a>
+                    <a href="?type=salads">{% translate "salad" %}</a>
                 </div>
             </details>
 
             <details class="sub-filter">
-                <summary>Japan ▼</summary>
+                <summary>{% translate "Japan ▼" %}</summary>
                 <div class="sub-content">
-                    <a href="?type=sushi">Sushi</a>
-                    <a href="?type=ramen">Ramen</a>
+                    <a href="?type=sushi">{% translate "Sushi" %}</a>
+                    <a href="?type=ramen">{% translate "Ramen" %}</a>
                 </div>
             </details>
 
             <details class="sub-filter">
-                <summary>Ukrainian ▼</summary>
+                <summary>{% translate "Ukrainian ▼" %}</summary>
                 <div class="sub-content">
-                    <a href="?type=soup">Soups</a>
-                    <a href="?type=main">Main Dishes</a>
+                    <a href="?type=soup">{% translate "Soups" %}</a>
+                    <a href="?type=main">{% translate "Main Dishes" %}</a>
                 </div>
             </details>
         </div>
@@ -43,9 +44,9 @@
             <div class="menu-item">
                 <div class="pasta-img-container">
                     {% if food.image %}
-                        <img src="{{ food.image.url }}" class="pasta-img">
+                        <img src="{{ food.image.url }}" class="pasta-img" alt="{{ food.name }}">
                     {% else %}
-                        <img src="{% static 'imgs/carbonara.jpg' %}" class="pasta-img">
+                        <img src="{% static 'imgs/carbonara.jpg' %}" class="pasta-img" alt="Default">
                     {% endif %}
                 </div>
                 
@@ -59,22 +60,24 @@
             </div>
         </a> 
         {% empty %}
-        <p class="no-food-message">No dishes found in this category.</p>
+        <p class="no-food-message">{% translate "No dishes found in this category." %}</p>
         {% endfor %}
     </div>
 
     {% if is_paginated %}
     <div class="pagination">
         {% if page_obj.has_previous %}
-            <a href="?page=1{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">Back</a>
+            <a href="?page=1{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">&laquo; {% translate "first" %}</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">{% translate "Back" %}</a>
         {% endif %}
 
-        <span class="current-page">Page {{ page_obj.number }} from {{ page_obj.paginator.num_pages }}</span>
+        <span class="current-page">
+            {% translate "Page" %} {{ page_obj.number }} {% translate "from" %} {{ page_obj.paginator.num_pages }}
+        </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">last &raquo;</a>
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">{% translate "next" %}</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}">{% translate "last" %} &raquo;</a>
         {% endif %}
     </div>
     {% endif %}

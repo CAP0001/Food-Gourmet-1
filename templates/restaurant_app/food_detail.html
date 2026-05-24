@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 <div class="food-container">
     <div class="food-left">
@@ -21,7 +21,7 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="make_order">
             <button type="submit" class="btn-order-main">
-                Order Now — {{ food.price }} USD
+                {% blocktrans with price=food.price %}Order Now — {{ price }} USD{% endblocktrans %}
             </button>
         </form>
     </div>
@@ -33,7 +33,7 @@
         <hr style="margin: 40px 0; opacity: 0.1;">
 
         <div class="feedback-section">
-            <h3 style="margin-bottom: 25px;">Customer Reviews</h3>
+            <h3 style="margin-bottom: 25px;">{% translate "Customer Reviews" %}</h3>
             
             <div class="reviews-wrapper" style="margin-bottom: 30px;">
                 {% for fb in feedbacks %}
@@ -67,14 +67,14 @@
                     </div>
                 </div>
                 {% empty %}
-                    <p style="color: #999;">No reviews yet. Be the first to rate!</p>
+                    <p style="color: #999;">{% translate "No reviews yet. Be the first to rate!" %}</p>
                 {% endfor %}
             </div>
 
             <form method="post" class="feedback-form" action="">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="add_feedback">
-                <p style="margin: 0 0 10px; font-weight: bold;">Your Rating:</p>
+                <p style="margin: 0 0 10px; font-weight: bold;">{% translate "Your Rating:" %}</p>
                 
                 <div class="rating-area">
                     <input type="radio" id="star-5" name="stars" value="5" required><label for="star-5"></label>
@@ -84,10 +84,10 @@
                     <input type="radio" id="star-1" name="stars" value="1"><label for="star-1"></label>
                 </div>
                 
-                <textarea name="feedback" placeholder="How was the food? Share your experience..." required></textarea>
+                <textarea name="feedback" placeholder='{% translate "How was the food? Share your experience..." %}' required></textarea>
                 
                 <button type="submit" class="btn-submit">
-                    Post Review
+                    {% translate "Post Review" %}
                 </button>
             </form>
         </div>

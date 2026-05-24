@@ -1,23 +1,18 @@
 {% load static %}
+{% load i18n %} 
 <!DOCTYPE html>
-<html lang="en">
+{% get_current_language as LANGUAGE_CODE %} 
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <title>Food Gourmet</title>
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/geeks.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/food.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/carbonara.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/basket.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/food_detail.css' %}">
 </head>
 <body>
@@ -25,6 +20,33 @@
         <div class="container header-inner">
             <div class="logo">Food gourmet</div>
             <nav class="menu">
+                <div class="language-switcher">
+                    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                        <input name="language" type="hidden" value="ru">
+                        <button type="submit" {% if LANGUAGE_CODE == 'ru' %}style="font-weight: bold;"{% endif %}>RU</button>
+                    </form>
+                
+                    <span> | </span>
+
+                    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                        <input name="language" type="hidden" value="en">
+                        <button type="submit" {% if LANGUAGE_CODE == 'en' %}style="font-weight: bold;"{% endif %}>EN</button>
+                    </form>
+                
+                    <span> | </span>
+                
+                    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                        <input name="language" type="hidden" value="uk">
+                        <button type="submit" {% if LANGUAGE_CODE == 'uk' %}style="font-weight: bold;"{% endif %}>UA</button>
+                    </form>
+                </div>
+                
                 <a href="{% url 'basket' %}">🛒</a>
                 <a href="{% url 'home' %}">home</a>
                 <a href="{% url 'profile' %}">profile</a>

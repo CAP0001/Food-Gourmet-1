@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-24 11:14+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\templates\about_us.html:8
+msgid "About us"
+msgstr "Про нас"
+
+#: .\templates\about_us.html:10
+msgid ""
+"Welcome to the food purchasing website, we will choose the best food for "
+"you! We cook for gourmets from all over the world!<br><br>\n"
+"                Buying online is much more convenient! You can get a "
+"discount on the product! We also take into account how much you book, the "
+"more you book, the more gifts for you!<br><br>\n"
+"                For 5 orders you get a <span class=\"bronze\">Bronze member</"
+"span> card, for 10 orders a <span class=\"silver\">Silver member</span>, for "
+"20 <span class=\"gold\">Golden member</span>, for 35 <span "
+"class=\"lapiz\">Lapiz member</span> and for 50 <span "
+"class=\"diamond\">DIAMOND MEMBER</span>,<br><br>\n"
+"                you can also use it in our restaurants and in several "
+"restaurants of our partners!<br>\n"
+"                We have a good customer base and an excellent reputation! In "
+"stock we have more than 300 types of dishes for everyone!"
+msgstr ""
+"Вітаю на сайті для покупки Їжі, ми підберемо кращу їжу для вас! Ми "
+"займаємося готуванням для гурманів зі всього світу!<br><br>\n"
+"Закуп онлайн набагато зручніше! Ви можете получити знижку на продукт! Також "
+"ми враховуємо скільки ви бронюєте, чим більше ви бронюєте тим більше для вас "
+"подарунків!<br><br>\n"
+"За 5 заказів ви отримуєте карту <span class=\"bronze\">Bronze member</span>, "
+"за 10 заказів <span class=\"silver\">Silver member</span>, за 20 <span "
+"class=\"gold\">Golden member</span>, за 35 <span class=\"lapiz\">Lapiz "
+"member</span> і за 50 <span class=\"diamond\">DIAMOND MEMBER</span>,"
+"<br><br>\n"
+"також ви можете використовувати її в наших ресторанах та у декількох "
+"ресторанах наших партнерів!<br>\n"
+"Ми маємо гарну клієнтську базу і відмінну репутацію! В асортименті ми маємо "
+"більше 300 видів блюд для каждого!"
+
+#: .\templates\home.html:10
+msgid "Welcome!"
+msgstr "Вітаю!"
+
+#: .\templates\home.html:12
+msgid ""
+"Welcome to the food booking website, we will choose the best dish! We are "
+"engaged in booking all over the world! (more details later on the website)"
+msgstr ""
+"Вітаю на сайті бронювання їжі, ми оберемо найкращу страву! Ми займаємося "
+"бронюванням по всьому світу! (більше деталей далі на сайті)"
+
+#: .\templates\home.html:14
+msgid "Start"
+msgstr "Почати"
+
+#: .\templates\profile.html:24
+msgid "Click to change photo"
+msgstr "Натисни, щоб змінити фото"
+
+#: .\templates\profile.html:28
+msgid "User Settings"
+msgstr "Налаштуваня користувача"
+
+#: .\templates\profile.html:40
+msgid "Member"
+msgstr "Участник"
+
+#: .\templates\profile.html:52
+msgid "Username"
+msgstr "Ім'я"
+
+#: .\templates\profile.html:57
+msgid "Email Address"
+msgstr "Електрона пошта"
+
+#: .\templates\profile.html:62
+msgid "Total orders:"
+msgstr "Кількість заказів"
+
+#: .\templates\profile.html:66
+msgid "Save Changes"
+msgstr "Зберегти зміни"
+
+#: .\templates\profile.html:69
+msgid "Profile successfully updated!"
+msgstr "Профіль успішно збережений"
+
+#: .\templates\profile.html:76
+msgid "Log Out from Account"
+msgstr "Вийти з аккаунта"
+
+#: .\templates\restaurant_app\basket.html:6
+msgid "Shopping Basket"
+msgstr "Кошик"
+
+#: .\templates\restaurant_app\basket.html:32
+msgid "Delete"
+msgstr "Видалити"
+
+#: .\templates\restaurant_app\basket.html:40
+msgid "Summary"
+msgstr "Сума"
+
+#: .\templates\restaurant_app\basket.html:49
+msgid "Confirm Order"
+msgstr "Підтвердити заказ"
+
+#: .\templates\restaurant_app\basket.html:53
+msgid "← Back to Menu"
+msgstr "← Повернутися до меню"
+
+#: .\templates\restaurant_app\basket.html:58
+msgid "Your basket is empty"
+msgstr "Ваш кошик путсий"
+
+#: .\templates\restaurant_app\basket.html:59
+msgid "It seems you haven't added any delicious food yet."
+msgstr "Мабуть, ви ще не замовили ни якої смачної страви"
+
+#: .\templates\restaurant_app\basket.html:60
+#, fuzzy
+#| msgid "← Back to Menu"
+msgid "Go to Menu"
+msgstr "← Повернутися до меню"
+
+#: .\templates\restaurant_app\basket.html:68
+msgid "Are you sure?"
+msgstr "Ви впевнені?"
+
+#: .\templates\restaurant_app\basket.html:69
+msgid "Your items will be ordered and your rank will increase!"
+msgstr "Ваше замовленя буде виконане та ваш статус підніметься"
+
+#: .\templates\restaurant_app\basket.html:71
+msgid "Yes, order it!"
+msgstr "Так, замовити"
+
+#: .\templates\restaurant_app\basket.html:72
+msgid "No, go back"
+msgstr "Ні, повернутися"
+
+#: .\templates\restaurant_app\food_detail.html:24
+#, python-format
+msgid "Order Now — %(price)s USD"
+msgstr ""
+
+#: .\templates\restaurant_app\food_detail.html:36
+msgid "Customer Reviews"
+msgstr ""
+
+#: .\templates\restaurant_app\food_detail.html:70
+msgid "No reviews yet. Be the first to rate!"
+msgstr ""
+
+#: .\templates\restaurant_app\food_detail.html:77
+msgid "Your Rating:"
+msgstr ""
+
+#: .\templates\restaurant_app\food_detail.html:87
+msgid "How was the food? Share your experience..."
+msgstr ""
+
+#: .\templates\restaurant_app\food_detail.html:90
+msgid "Post Review"
+msgstr ""
+
+#: .\templates\restaurant_app\food_list.html:8
+msgid "Filters ▼"
+msgstr "Фільтри ▼"
+
+#: .\templates\restaurant_app\food_list.html:11
+msgid "All Dishes"
+msgstr "Усі страви"
+
+#: .\templates\restaurant_app\food_list.html:14
+msgid "Italian ▼"
+msgstr "Італійські ▼"
+
+#: .\templates\restaurant_app\food_list.html:16
+msgid "Pizza"
+msgstr "Піцца"
+
+#: .\templates\restaurant_app\food_list.html:17
+msgid "Pasta"
+msgstr "Паста"
+
+#: .\templates\restaurant_app\food_list.html:18
+msgid "desserts"
+msgstr "Десерти"
+
+#: .\templates\restaurant_app\food_list.html:19
+msgid "salad"
+msgstr "Салати"
+
+#: .\templates\restaurant_app\food_list.html:24
+msgid "Japan ▼"
+msgstr "Японські ▼"
+
+#: .\templates\restaurant_app\food_list.html:26
+msgid "Sushi"
+msgstr "Суши"
+
+#: .\templates\restaurant_app\food_list.html:27
+msgid "Ramen"
+msgstr "Рамен"
+
+#: .\templates\restaurant_app\food_list.html:32
+msgid "Ukrainian ▼"
+msgstr "Україньскі ▼"
+
+#: .\templates\restaurant_app\food_list.html:34
+msgid "Soups"
+msgstr "Супи"
+
+#: .\templates\restaurant_app\food_list.html:35
+msgid "Main Dishes"
+msgstr "Основні страви"
+
+#: .\templates\restaurant_app\food_list.html:63
+msgid "No dishes found in this category."
+msgstr "Ніяких страв не знайдено у цих категоріях"
+
+#: .\templates\restaurant_app\food_list.html:70
+msgid "first"
+msgstr "Перша"
+
+#: .\templates\restaurant_app\food_list.html:71
+msgid "Back"
+msgstr "Назад"
+
+#: .\templates\restaurant_app\food_list.html:75
+msgid "Page"
+msgstr "Сторінка"
+
+#: .\templates\restaurant_app\food_list.html:75
+msgid "from"
+msgstr "з"
+
+#: .\templates\restaurant_app\food_list.html:79
+msgid "next"
+msgstr "наступна"
+
+#: .\templates\restaurant_app\food_list.html:80
+msgid "last"
+msgstr "остання"
+

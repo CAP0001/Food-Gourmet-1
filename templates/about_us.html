@@ -1,29 +1,19 @@
 {% extends 'base.html' %}
+{% load i18n %} 
+
 {% block content %}
-
-<body>
-
 <section class="main">
     <div class="container main-inner">
         <div class="main-text">
-            <h1>About us</h1>
+            <h1>{% translate "About us" %}</h1>
             <p>
-                Вітаю на сайті для покупки Їжі, ми підберемо кращу їжу для вас! Ми займаємося готуванням для гурманів зі всього світу!<br><br>
-                Закуп онлайн набагато зручніше! Ви можете получити знижку на продукт! Також ми враховуємо скільки
-                ви бронюєте, чим більше ви бронюєте тим більше для вас подарунків!<br><br>
-                За 5 заказів ви отримуєте карту 
-                <span class="bronze">Bronze member</span>, 
-                за 10 заказів <span class="silver">Silver member</span>, 
-                за 20 <span class="gold">Golden member</span>, 
-                за 35 <span class="lapiz">Lapiz member</span> 
-                і за 50 <span class="diamond">DIAMOND MEMBER</span>,<br><br>
-                також ви можете використовувати її в наших ресторанах
-                та у декількох ресторанах наших партнерів!<br>
-                Ми маємо гарну клієнтську базу і відмінну репутацію!
-                В асортименті ми маємо більше 300 видів блюд для каждого!
+                {% blocktranslate %}Welcome to the food purchasing website, we will choose the best food for you! We cook for gourmets from all over the world!<br><br>
+                Buying online is much more convenient! You can get a discount on the product! We also take into account how much you book, the more you book, the more gifts for you!<br><br>
+                For 5 orders you get a <span class="bronze">Bronze member</span> card, for 10 orders a <span class="silver">Silver member</span>, for 20 <span class="gold">Golden member</span>, for 35 <span class="lapiz">Lapiz member</span> and for 50 <span class="diamond">DIAMOND MEMBER</span>,<br><br>
+                you can also use it in our restaurants and in several restaurants of our partners!<br>
+                We have a good customer base and an excellent reputation! In stock we have more than 300 types of dishes for everyone!{% endblocktranslate %}
             </p>
         </div>
     </div>
 </section>
-</body>
-    {% endblock %}
+{% endblock %}

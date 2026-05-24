@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %} 
 
 {% block content %}
 <section class="main">
     <div class="container main-inner">
-
+        
         <div class="main-text">
-            <h1>Welcome!</h1>
-            <p>Вітаю на сайті для бронювання їжі, ми підберемо кращу страву! 
-               Ми займаємося бронюванням усьому світі!
-               (більше деталей далі на сайті)
+            <h1>{% translate "Welcome!" %}</h1>
+            <p>
+                {% translate "Welcome to the food booking website, we will choose the best dish! We are engaged in booking all over the world! (more details later on the website)" %}
             </p>
-            <a href="/foods/" class="btn">Start</a>
+            <a href="{% url 'food-list' %}" class="btn">{% translate "Start" %}</a>
         </div>
 
         <div class="main-img">
-            <img src="{% static 'imgs/pasta.jpeg' %}">
+            <img src="{% static 'imgs/pasta.jpeg' %}" alt="Pasta">
         </div>
 
     </div>
