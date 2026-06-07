@@ -160,27 +160,27 @@ msgstr "Нет, вернуться"
 #: .\templates\restaurant_app\food_detail.html:24
 #, python-format
 msgid "Order Now — %(price)s USD"
-msgstr ""
+msgstr "Заказать — %(price)s USD"
 
 #: .\templates\restaurant_app\food_detail.html:36
 msgid "Customer Reviews"
-msgstr ""
+msgstr "Отзыв пользователей"
 
 #: .\templates\restaurant_app\food_detail.html:70
 msgid "No reviews yet. Be the first to rate!"
-msgstr ""
+msgstr "Нету отзывов. Будь первым!"
 
 #: .\templates\restaurant_app\food_detail.html:77
 msgid "Your Rating:"
-msgstr ""
+msgstr "Твоя оценка:"
 
 #: .\templates\restaurant_app\food_detail.html:87
 msgid "How was the food? Share your experience..."
-msgstr ""
+msgstr "Как блюдо? Поделись впечитлением..."
 
 #: .\templates\restaurant_app\food_detail.html:90
 msgid "Post Review"
-msgstr ""
+msgstr "Оставь отзыв"
 
 #: .\templates\restaurant_app\food_list.html:8
 msgid "Filters ▼"

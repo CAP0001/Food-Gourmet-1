@@ -161,27 +161,27 @@ msgstr "Ні, повернутися"
 #: .\templates\restaurant_app\food_detail.html:24
 #, python-format
 msgid "Order Now — %(price)s USD"
-msgstr ""
+msgstr "Замовити %(price)s USD"
 
 #: .\templates\restaurant_app\food_detail.html:36
 msgid "Customer Reviews"
-msgstr ""
+msgstr "Відгук користувачів"
 
 #: .\templates\restaurant_app\food_detail.html:70
 msgid "No reviews yet. Be the first to rate!"
-msgstr ""
+msgstr "Немає відгуків. Будь першим!"
 
 #: .\templates\restaurant_app\food_detail.html:77
 msgid "Your Rating:"
-msgstr ""
+msgstr "Твій рейтінг:"
 
 #: .\templates\restaurant_app\food_detail.html:87
 msgid "How was the food? Share your experience..."
-msgstr ""
+msgstr "Як страва? Поделись враженями..."
 
 #: .\templates\restaurant_app\food_detail.html:90
 msgid "Post Review"
-msgstr ""
+msgstr "Залиш відгук"
 
 #: .\templates\restaurant_app\food_list.html:8
 msgid "Filters ▼"
@@ -262,4 +262,3 @@ msgstr "наступна"
 #: .\templates\restaurant_app\food_list.html:80
 msgid "last"
 msgstr "остання"
-
