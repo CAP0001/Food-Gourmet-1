@@ -40,7 +40,8 @@
 
     <div class="food-items-container">
         {% for food in foods %}
-        <a href="{% url 'food-detail' food.pk %}" class="menu-item-link">
+        <a href="
+        {% url 'food-detail' food.pk %}" class="menu-item-link">
             <div class="menu-item">
                 <div class="pasta-img-container">
                     {% if food.image %}
